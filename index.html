@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CeeTy Scent - Luxury Perfume Collection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #8b5cf6;
+            --secondary-purple: #a78bfa;
+            --accent-gold: #fbbf24;
+            --accent-rose: #f43f5e;
+            --dark-purple: #581c87;
+            --light-lavender: #f8faff;
+            --white: #ffffff;
+            --text-dark: #374151;
+            --text-light: #6b7280;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.1), 0 2px 4px -1px rgba(139, 92, 246, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-lavender);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow-lg);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--accent-gold);
+            font-size: 2.2rem;
+        }
+
+        .logo-text {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-rose));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Georgia', serif;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: rgba(255,255,255,0.1);
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(167,139,250,0.85)), 
+                        url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1600&q=80') 
+                        no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffffff, var(--accent-gold));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-family: 'Georgia', serif;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid transparent;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-rose));
+            color: white;
+        }
+
+        .cta-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Page content */
+        .page {
+            display: none;
+            min-height: calc(100vh - 140px);
+            margin-top: 70px;
+            padding-top: 2rem;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, var(--accent-gold));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            color: var(--primary-purple);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            font-family: 'Georgia', serif;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-gold);
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin: 1rem 0;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Product cards */
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(251,191,36,0.3));
+            z-index: 1;
+        }
+
+        .product-image i {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .product-content {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .product-description {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-rose);
+            margin-bottom: 1.2rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.8rem;
+        }
+
+        .product-features li {
+            padding: 0.4rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .product-features li:before {
+            content: "✨";
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .gender-section {
+            margin-bottom: 4rem;
+        }
+
+        .gender-title {
+            color: var(--primary-purple);
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, var(--secondary-purple), var(--accent-gold));
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, var(--accent-gold), var(--accent-rose));
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(45deg, var(--accent-rose), var(--accent-gold));
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* Forms */
+        .form-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 2rem auto;
+            border: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Order Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(139, 92, 246, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            font-family: 'Georgia', serif;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .close:hover {
+            color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Order summary */
+        .order-summary {
+            background: var(--light-lavender);
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+        }
+
+        /* Payment Info Box */
+        .payment-info {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .payment-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .account-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            letter-spacing: 2px;
+        }
+
+        .payment-steps {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .payment-steps h4 {
+            color: white;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .payment-steps ol {
+            color: white;
+            line-height: 1.8;
+        }
+
+        .payment-steps ol li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .message.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .message.warning {
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Shipping info styling */
+        .shipping-info {
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .shipping-rate {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-purple);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: var(--shadow);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
+                padding: 2rem;
+            }
+
+            .account-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .card, .form-container {
+                padding: 1.8rem;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .account-number {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Loading states */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Special perfume effects */
+        .sparkle {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+            animation: sparkle 3s infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" onclick="showPage('home')" class="logo">
+                <i class="fas fa-spray-can"></i>
+                <span class="logo-text">CeeTy Scent</span>
+            </a>
+            <nav>
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul id="nav-menu">
+                    <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
+                    <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                    <li><a href="#" onclick="showPage('products')" class="nav-link">Shop</a></li>
+                    <li><a href="#" onclick="showPage('shipping')" class="nav-link">Shipping</a></li>
+                    <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-subtitle">Luxury Fragrances</div>
+                <h1>Scents That Define You</h1>
+                <p>Discover our exclusive collection of premium perfumes crafted to capture your unique essence and leave an unforgettable impression.</p>
+                <div class="cta-group">
+                    <a href="#" onclick="showPage('products')" class="cta cta-primary">Shop Collection</a>
+                    <a href="#" onclick="showPage('contact')" class="cta cta-secondary">Find Your Scent</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="section">
+            <h2 class="section-title">Why Choose CeeTy Scent?</h2>
+            <div class="grid">
+                <div class="card sparkle">
+                    <div class="card-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Premium Quality</h3>
+                    <p>Each fragrance is carefully crafted using the finest ingredients sourced from around the world, ensuring lasting quality and sophisticated scents.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Natural Excellence</h3>
+                    <p>We source the finest natural ingredients from around the world, ensuring each fragrance captures the purest essence of luxury and quality.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-users"></i></div>
+                    <h3>Personal Touch</h3>
+                    <p>Every customer receives personalized attention and expert guidance to find their signature scent that perfectly complements their personality and style.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shipping-fast"></i></div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and secure Paxi shipping at only R60 nationwide with careful packaging to ensure your fragrance arrives in perfect condition.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Personal Service</h3>
+                    <p>Our fragrance experts provide personalized recommendations to help you find the perfect scent that matches your personality and style.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 4rem;">Our Commitment</h2>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; color: var(--accent-gold); font-weight: 700;">500+</div>
+                    <h3>Happy Customers</h3>
+                    <p>Satisfied customers who found their signature scent</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; color: var(--accent-gold); font-weight: 700;">50+</div>
+                    <h3>Unique Fragrances</h3>
+                    <p>Carefully curated collection of premium perfumes</p>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 3rem; color: var(--accent-gold); font-weight: 700;">24/7</div>
+                    <h3>Customer Care</h3>
+                    <p>Always available to help you find your perfect fragrance</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 4rem;">Your Fragrance Journey</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; flex-wrap: wrap;">
+                <div style="flex: 1; text-align: center; padding: 1rem; position: relative;">
+                    <div style="background: linear-gradient(45deg, var(--primary-purple), var(--accent-gold)); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1rem auto; box-shadow: var(--shadow);">1</div>
+                    <h3>Discover</h3>
+                    <p>Browse our curated collection of luxury fragrances</p>
+                </div>
+                <div style="flex: 1; text-align: center; padding: 1rem; position: relative;">
+                    <div style="background: linear-gradient(45deg, var(--primary-purple), var(--accent-gold)); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1rem auto; box-shadow: var(--shadow);">2</div>
+                    <h3>Order</h3>
+                    <p>Select your perfect fragrance and place your order</p>
+                </div>
+                <div style="flex: 1; text-align: center; padding: 1rem; position: relative;">
+                    <div style="background: linear-gradient(45deg, var(--primary-purple), var(--accent-gold)); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1rem auto; box-shadow: var(--shadow);">3</div>
+                    <h3>Ship</h3>
+                    <p>Fast Paxi delivery at R60 with your PEP number</p>
+                </div>
+                <div style="flex: 1; text-align: center; padding: 1rem; position: relative;">
+                    <div style="background: linear-gradient(45deg, var(--primary-purple), var(--accent-gold)); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; margin: 0 auto 1rem auto; box-shadow: var(--shadow);">4</div>
+                    <h3>Enjoy</h3>
+                    <p>Experience luxury delivered on time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="page-header">
+            <h1>About CeeTy Scent</h1>
+            <p>Crafting memorable fragrances that tell your unique story</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Our Story</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-star"></i></div>
+                    <h3>Premium Heritage</h3>
+                    <p>Founded with a passion for exceptional fragrances, CeeTy Scent brings together traditional perfumery artistry with modern sophistication to create unforgettable scents.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global Sourcing</h3>
+                    <p>We travel the world to source the finest raw materials - from Bulgarian roses to Indian sandalwood, ensuring each fragrance captures authentic luxury.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Personal Service</h3>
+                    <p>Our commitment to personalized customer service ensures every client finds their perfect fragrance match through expert consultation and care.</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple)); color: white; padding: 4rem 2rem; border-radius: 20px; margin: 4rem 0; text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; font-family: 'Georgia', serif;">Our Philosophy</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.3rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.9;">
+                        At CeeTy Scent, we believe that fragrance is more than just a pleasant aroma - it's a form of personal expression, a way to create lasting memories, and an invisible accessory that completes your unique style.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.7; opacity: 0.85;">
+                        Every bottle we offer is carefully selected for its quality, longevity, and ability to evoke emotions. We're not just selling perfumes; we're helping you discover scents that resonate with your soul and become part of your personal story.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="section-title">What Makes Us Different</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-award"></i></div>
+                    <h3>Quality Assurance</h3>
+                    <p>Every fragrance undergoes rigorous quality checks to ensure authenticity, longevity, and exceptional performance. We stand behind every bottle we sell.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Expert Curation</h3>
+                    <p>Our fragrance experts have years of experience in the perfume industry, carefully selecting only the most exceptional scents for our collection.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Timely Delivery</h3>
+                    <p>We understand the excitement of receiving your new fragrance. Our Paxi shipping ensures fast, reliable delivery to your nearest PEP store within 3-7 days.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Ongoing Support</h3>
+                    <p>Our relationship doesn't end with your purchase. We provide ongoing fragrance advice, application tips, and help you build your scent wardrobe over time.</p>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 3rem; border-radius: 16px; box-shadow: var(--shadow); margin: 4rem 0; text-align: center;">
+                <h2 style="color: var(--primary-purple); font-family: 'Georgia', serif; margin-bottom: 2rem;">Meet Our Team</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div style="text-align: center;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 3rem; color: white;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 style="color: var(--text-dark); margin-bottom: 0.5rem;">Fragrance Consultant</h3>
+                        <p style="color: var(--text-light);">Expert guidance for finding your perfect scent</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple)); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 3rem; color: white;">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3 style="color: var(--text-dark); margin-bottom: 0.5rem;">Logistics Manager</h3>
+                        <p style="color: var(--text-light);">Ensuring fast and secure delivery nationwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS PAGE -->
+    <div id="products" class="page">
+        <div class="page-header">
+            <h1>Fragrance Collection</h1>
+            <p>Discover luxury perfumes that capture your unique essence</p>
+        </div>
+        
+        <div class="section">
+            <!-- Men's Fragrances -->
+            <div class="gender-section">
+                <h2 class="gender-title"><i class="fas fa-male"></i> Men's Collection</h2>
+                <div class="grid">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Bleu de Chanel</div>
+                            <div class="product-description">A sophisticated woody aromatic fragrance with citrus freshness and cedar depth</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Lemon, Bergamot, Mint</li>
+                                <li>Heart notes: Pineapple, Jasmine</li>
+                                <li>Base notes: Incense, Cedar, Sandalwood</li>
+                                <li>Long-lasting 8+ hours</li>
+                                <li>Perfect for office & evening</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Bleu de Chanel', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Sauvage Dior</div>
+                            <div class="product-description">Fresh and raw fragrance with bergamot and pepper notes</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Bergamot, Pepper</li>
+                                <li>Heart notes: Sichuan Pepper, Lavender</li>
+                                <li>Base notes: Ambroxan, Cedar</li>
+                                <li>Fresh and masculine</li>
+                                <li>All-day wear</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Sauvage Dior', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-diamond"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Acqua Di Gio</div>
+                            <div class="product-description">Marine and aquatic fragrance perfect for summer days</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Lime, Lemon, Bergamot</li>
+                                <li>Heart notes: Jasmine, Calone</li>
+                                <li>Base notes: White Musk, Cedar</li>
+                                <li>Fresh aquatic scent</li>
+                                <li>Perfect for daytime</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Acqua Di Gio', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">One Million</div>
+                            <div class="product-description">Bold and seductive with spicy cinnamon and leather notes</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Blood Mandarin, Mint</li>
+                                <li>Heart notes: Cinnamon, Spicy Notes</li>
+                                <li>Base notes: Leather, Amber</li>
+                                <li>Bold and confident</li>
+                                <li>Evening wear</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('One Million', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Women's Fragrances -->
+            <div class="gender-section">
+                <h2 class="gender-title"><i class="fas fa-female"></i> Women's Collection</h2>
+                <div class="grid">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1528821128474-27f963b062bf?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-rose"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Chanel No. 5</div>
+                            <div class="product-description">Timeless floral aldehyde fragrance - the epitome of elegance</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Aldehydes, Ylang-ylang</li>
+                                <li>Heart notes: Rose, Jasmine, Lily</li>
+                                <li>Base notes: Sandalwood, Vanilla</li>
+                                <li>Iconic and timeless</li>
+                                <li>Perfect for special occasions</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Chanel No. 5', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1605185907312-8d5eb2b2d4e5?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Miss Dior</div>
+                            <div class="product-description">Elegant floral fragrance with rose and peony blooms</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Blood Orange, Mandarin</li>
+                                <li>Heart notes: Rose, Peony, Lily</li>
+                                <li>Base notes: Patchouli, Rosewood</li>
+                                <li>Romantic and feminine</li>
+                                <li>Perfect for daytime</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Miss Dior', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-flower"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Flowerbomb</div>
+                            <div class="product-description">Explosive floral bouquet with oriental warmth</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Tea, Bergamot</li>
+                                <li>Heart notes: Sambac Jasmine, Rose</li>
+                                <li>Base notes: Patchouli, Musk</li>
+                                <li>Bold and captivating</li>
+                                <li>Long-lasting projection</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Flowerbomb', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1583001529896-cb79d80ad0a9?auto=format&fit=crop&w=400&q=80');">
+                            <i class="fas fa-sun"></i>
+                        </div>
+                        <div class="product-content">
+                            <div class="product-title">Light Blue</div>
+                            <div class="product-description">Fresh Mediterranean fragrance with apple and cedarwood</div>
+                            <div class="product-price">R250</div>
+                            <ul class="product-features">
+                                <li>Top notes: Sicily Lemon, Apple</li>
+                                <li>Heart notes: Bamboo, Jasmine</li>
+                                <li>Base notes: Cedar, Amber, Musk</li>
+                                <li>Fresh and energizing</li>
+                                <li>Perfect for summer</li>
+                            </ul>
+                            <button class="btn btn-full" onclick="openOrderModal('Light Blue', 250, 250)">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHIPPING PAGE -->
+    <div id="shipping" class="page">
+        <div class="page-header">
+            <h1>Shipping Information</h1>
+            <p>Fast and reliable delivery across South Africa</p>
+        </div>
+        
+        <div class="section">
+            <div class="shipping-info">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <i class="fas fa-truck" style="font-size: 4rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                    <h2 style="margin-bottom: 1rem;">Paxi Shipping</h2>
+                    <div class="shipping-rate">R60</div>
+                    <p style="font-size: 1.2rem;">Nationwide delivery to all PEP stores</p>
+                </div>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+                    <h3 style="margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-info-circle"></i> How Paxi Works</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center;">
+                            <div style="background: var(--accent-gold); color: var(--dark-purple); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem auto;">1</div>
+                            <h4>Find Your PEP Store</h4>
+                            <p>Choose your nearest PEP store for collection</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: var(--accent-gold); color: var(--dark-purple); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem auto;">2</div>
+                            <h4>Provide PEP Number</h4>
+                            <p>Include your PEP number when ordering</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: var(--accent-gold); color: var(--dark-purple); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem auto;">3</div>
+                            <h4>We Ship</h4>
+                            <p>Your order ships to your chosen PEP store</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: var(--accent-gold); color: var(--dark-purple); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem auto;">4</div>
+                            <h4>Collect</h4>
+                            <p>Get notified and collect your fragrance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Delivery Time</h3>
+                    <p><strong>3-7 Business Days</strong></p>
+                    <p>Fast delivery to PEP stores nationwide</p>
+                    <p>You'll receive SMS notifications when ready for collection</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Secure Packaging</h3>
+                    <p><strong>Premium Protection</strong></p>
+                    <p>Fragrance bottles are carefully wrapped and secured</p>
+                    <p>Bubble wrap and cushioning materials included</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Nationwide Coverage</h3>
+                    <p><strong>All 9 Provinces</strong></p>
+                    <p>Delivery to over 2000+ PEP stores</p>
+                    <p>Rural and urban areas covered</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Tracking Support</h3>
+                    <p><strong>Full Tracking</strong></p>
+                    <p>Track your order via SMS updates</p>
+                    <p>Customer support: +27 76 318 4650</p>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2.5rem; border-radius: 16px; box-shadow: var(--shadow); margin: 3rem 0;">
+                <h2 style="color: var(--primary-purple); text-align: center; margin-bottom: 2rem; font-family: 'Georgia', serif;">Important Shipping Notes</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div>
+                        <h3 style="color: var(--accent-rose); margin-bottom: 1rem;"><i class="fas fa-exclamation-triangle"></i> PEP Number Required</h3>
+                        <ul style="color: var(--text-light); line-height: 1.8;">
+                            <li>You must provide your PEP cell phone number when ordering</li>
+                            <li>This is used for delivery notifications</li>
+                            <li>Without a PEP number, we cannot process your order</li>
+                            <li>Register at any PEP store if you don't have one</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: var(--accent-rose); margin-bottom: 1rem;"><i class="fas fa-id-card"></i> Collection Requirements</h3>
+                        <ul style="color: var(--text-light); line-height: 1.8;">
+                            <li>Bring your ID when collecting</li>
+                            <li>Only the person who ordered can collect</li>
+                            <li>Items must be collected within 7 days</li>
+                            <li>SMS confirmation required at PEP store</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, var(--light-lavender), rgba(139,92,246,0.1)); padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+                    <h3 style="color: var(--primary-purple); margin-bottom: 1rem;">
+                        <i class="fas fa-gift"></i> Free Shipping on Orders Over R1000!
+                    </h3>
+                    <p style="color: var(--text-dark); font-size: 1.1rem;">
+                        Order multiple fragrances and save on shipping costs. Perfect for gifts or building your fragrance collection.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="page-header">
+            <h1>Contact Us</h1>
+            <p>Get in touch for fragrance consultations and personalized service</p>
+        </div>
+        
+        <div class="section">
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-phone"></i></div>
+                    <h3>Phone Support</h3>
+                    <p><strong>+27 76 318 4650</strong></p>
+                    <p>Monday - Sunday: 9:00 AM - 8:00 PM</p>
+                    <p>Fragrance consultations and support</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/27763184650" style="color: var(--primary-purple); text-decoration: none;">+27 76 318 4650</a></p>
+                    <p>Quick responses for orders and queries</p>
+                    <p>Available 9:00 AM - 9:00 PM</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@weetyscent.com" style="color: var(--primary-purple); text-decoration: none;">info@weetyscent.com</a></p>
+                    <p>Response within 24 hours</p>
+                    <p>For detailed inquiries and custom orders</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Shipping Info</h3>
+                    <p><strong>Paxi Delivery:</strong> R60</p>
+                    <p><strong>Coverage:</strong> Nationwide PEP stores</p>
+                    <p>Fast 3-7 day delivery</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h2 style="margin-bottom: 1.5rem; color: var(--primary-purple); font-family: 'Georgia', serif;">Find Your Perfect Scent</h2>
+                
+                <div id="contact-messages" class="message"></div>
+                
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number *</label>
+                            <input type="tel" id="contact-phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-email">Email Address</label>
+                            <input type="email" id="contact-email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-pep">PEP Number *</label>
+                            <input type="tel" id="contact-pep" name="pep" placeholder="Your PEP cell number" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-location">Preferred PEP Store *</label>
+                            <input type="text" id="contact-location" name="location" placeholder="e.g., PEP Sandton City" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-gender">Gender Preference</label>
+                            <select id="contact-gender" name="gender">
+                                <option value="">Select Gender</option>
+                                <option value="mens">Men's Fragrances</option>
+                                <option value="womens">Women's Fragrances</option>
+                                <option value="both">Both</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-preferences">Fragrance Preferences</label>
+                        <textarea id="contact-preferences" name="preferences" rows="3" placeholder="Tell us about scents you love, occasions you need fragrances for, or any specific preferences..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" name="message" rows="4" required placeholder="How can we help you find your perfect fragrance?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold btn-full">
+                        <span id="contact-btn-text">Send Message</span>
+                        <span id="contact-btn-loading" style="display: none;" class="loading"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER MODAL -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Order Fragrance</h2>
+                <button class="close" onclick="closeOrderModal()">&times;</button>
+            </div>
+            
+            <div id="order-messages" class="message"></div>
+            
+            <form id="order-form">
+                <input type="hidden" id="order-product-name" name="product">
+                <input type="hidden" id="order-product-price-min" name="price-min">
+                <input type="hidden" id="order-product-price-max" name="price-max">
+                
+                <div class="order-summary">
+                    <div class="order-item">
+                        <span>Fragrance:</span>
+                        <span id="order-product-display"></span>
+                    </div>
+                    <div class="order-item">
+                        <span>Price:</span>
+                        <span id="order-price-display"></span>
+                    </div>
+                    <div class="order-item">
+                        <span>Shipping (Paxi):</span>
+                        <span>R60</span>
+                    </div>
+                </div>
+
+                <!-- Payment Information Box -->
+                <div class="payment-info">
+                    <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
+                    <p>Please make your payment to our capetic bank account:</p>
+                    <div class="account-number">
+                        1972211119
+                        <button type="button" class="copy-btn" onclick="copyAccountNumber()">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                    
+                    <div class="payment-steps">
+                        <h4>📱 How to Complete Your Order:</h4>
+                        <ol>
+                            <li>Fill out the order form below (include PEP number)</li>
+                            <li>Click "Place Order" to submit your details</li>
+                            <li>Make payment to account (capetic): <strong>1972211119</strong></li>
+                            <li>Send proof of payment to WhatsApp: <strong>+27 76 318 4650</strong></li>
+                            <li>We'll ship via Paxi to your chosen PEP store</li>
+                        </ol>
+                    </div>
+                    
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">
+                        <i class="fas fa-shield-alt"></i> 
+                        Your order will be processed once payment is confirmed via WhatsApp
+                    </p>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="order-name">Full Name *</label>
+                        <input type="text" id="order-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="order-phone">Phone Number *</label>
+                        <input type="tel" id="order-phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="order-email">Email Address</label>
+                        <input type="email" id="order-email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="order-pep">PEP Number * <small style="color: var(--accent-rose);">(Required for delivery)</small></label>
+                        <input type="tel" id="order-pep" name="pep" placeholder="Your registered PEP cell number" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="order-location">PEP Store for Collection *</label>
+                        <input type="text" id="order-location" name="location" placeholder="e.g., PEP Sandton City, PEP Cape Gate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="order-size">Bottle Size</label>
+                        <select id="order-size" name="size">
+                            <option value="30ml">30ml - Travel Size</option>
+                            <option value="50ml" selected>50ml - Standard</option>
+                            <option value="100ml">100ml - Premium</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="order-notes">Special Instructions</label>
+                    <textarea id="order-notes" name="notes" rows="3" placeholder="Any special requests or delivery instructions..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-gold btn-full">
+                    <span id="order-btn-text">Place Order</span>
+                    <span id="order-btn-loading" style="display: none;" class="loading"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and activate the correct nav link
+            const activeLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeLink && activeLink.classList.contains('nav-link')) {
+                activeLink.classList.add('active');
+            }
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.remove('show');
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('show');
+        }
+
+        // Order modal functionality
+        function openOrderModal(productName, minPrice, maxPrice) {
+            const modal = document.getElementById('orderModal');
+            const productDisplay = document.getElementById('order-product-display');
+            const priceDisplay = document.getElementById('order-price-display');
+            
+            // Set product information
+            document.getElementById('order-product-name').value = productName;
+            document.getElementById('order-product-price-min').value = minPrice;
+            document.getElementById('order-product-price-max').value = maxPrice;
+            
+            productDisplay.textContent = productName;
+            priceDisplay.textContent = `R${minPrice}`;
+            
+            // Show modal
+            modal.style.display = 'block';
+            
+            // Add fade-in animation
+            setTimeout(() => {
+                modal.querySelector('.modal-content').classList.add('fade-in');
+            }, 10);
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.style.display = 'none';
+            
+            // Reset form
+            document.getElementById('order-form').reset();
+            hideMessage('order-messages');
+        }
+
+        // Copy account number functionality
+        function copyAccountNumber() {
+            const accountNumber = '1972211119';
+            
+            // Try to use the modern clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(accountNumber).then(() => {
+                    showMessage('order-messages', 'Account number copied to clipboard!', 'success');
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(accountNumber);
+                });
+            } else {
+                fallbackCopyTextToClipboard(accountNumber);
+            }
+        }
+
+        // Fallback copy function for older browsers
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showMessage('order-messages', 'Account number copied to clipboard!', 'success');
+            } catch (err) {
+                showMessage('order-messages', 'Unable to copy. Please manually copy: 1972211119', 'warning');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        // Message display functionality
+        function showMessage(containerId, message, type = 'success') {
+            const messageContainer = document.getElementById(containerId);
+            messageContainer.textContent = message;
+            messageContainer.className = `message ${type}`;
+            messageContainer.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => hideMessage(containerId), 5000);
+            }
+        }
+
+        function hideMessage(containerId) {
+            const messageContainer = document.getElementById(containerId);
+            messageContainer.style.display = 'none';
+        }
+
+        // Create WhatsApp message with order details
+        function createWhatsAppMessage(orderData) {
+            const message = `🌟 *NEW ORDER - CeeTy Scent* 🌟
+
+📱 *Customer Details:*
+• Name: ${orderData.name}
+• Phone: ${orderData.phone}
+• Email: ${orderData.email || 'Not provided'}
+
+💎 *Order Details:*
+• Fragrance: ${orderData.product}
+• Price: R${orderData.price}
+• Size: ${orderData.size}
+• Shipping: R60 (Paxi)
+• Total: R${parseInt(orderData.price) + 60}
+
+📍 *Delivery Info:*
+• PEP Number: ${orderData.pep}
+• PEP Store: ${orderData.location}
+
+💳 *Payment Info:*
+Account: 1972211119 (Capitec)
+Amount to Pay: R${parseInt(orderData.price) + 60}
+
+${orderData.notes ? `📝 *Special Instructions:*\n${orderData.notes}\n\n` : ''}*Next Steps:*
+1. Customer will make payment
+2. Customer will send proof of payment
+3. Process order and ship via Paxi
+
+*Order placed on:* ${new Date().toLocaleDateString('en-ZA')} at ${new Date().toLocaleTimeString('en-ZA')}`;
+
+            return encodeURIComponent(message);
+        }
+
+        // Form submission handlers
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btnText = document.getElementById('order-btn-text');
+            const btnLoading = document.getElementById('order-btn-loading');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const orderData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                pep: formData.get('pep'),
+                location: formData.get('location'),
+                size: formData.get('size'),
+                notes: formData.get('notes'),
+                product: formData.get('product'),
+                price: formData.get('price-min')
+            };
+            
+            // Simulate form processing
+            setTimeout(() => {
+                // Hide loading state
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                
+                // Create WhatsApp message
+                const whatsappMessage = createWhatsAppMessage(orderData);
+                const whatsappURL = `https://wa.me/27763184650?text=${whatsappMessage}`;
+                
+                // Show success message
+                showMessage('order-messages', 
+                    'Order submitted successfully! Redirecting to WhatsApp...', 
+                    'success');
+                
+                // Redirect to WhatsApp after 2 seconds
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                    closeOrderModal();
+                }, 2000);
+                
+            }, 2000);
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btnText = document.getElementById('contact-btn-text');
+            const btnLoading = document.getElementById('contact-btn-loading');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+            
+            // Simulate form processing
+            setTimeout(() => {
+                // Hide loading state
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                
+                // Show success message
+                showMessage('contact-messages', 
+                    'Message sent successfully! We\'ll get back to you within 24 hours via WhatsApp or phone.', 
+                    'success');
+                
+                // Reset form after successful submission
+                setTimeout(() => {
+                    this.reset();
+                }, 2000);
+            }, 2000);
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target === modal) {
+                closeOrderModal();
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling and fade-in animations
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 100);
+            });
+            
+            // Initialize with home page active
+            showPage('home');
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-8px) scale(1)';
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Only run if href is not just "#"
+                if (this.getAttribute('href') === '#') {
+                    // Prevent default and do nothing
+                    e.preventDefault();
+                    return;
+                }
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
