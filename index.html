@@ -28,7 +28,6 @@
         /* Header */
         header {
             background: rgba(0, 0, 0, 0.95);
-            -webkit-backdrop-filter: blur(15px);
             backdrop-filter: blur(15px);
             padding: 1rem 0;
             position: fixed;
@@ -36,7 +35,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 3px solid #ff69b4;
-            box-shadow: 0 5px 20px rgba(22, 21, 22, 0.2);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.2);
             transition: all 0.3s ease;
         }
 
@@ -54,7 +53,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
-            cursor: ponter;
+            animation: glow 2s ease-in-out infinite alternate;
+            cursor: pointer;
         }
 
         @keyframes glow {
@@ -244,7 +244,6 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 1rem;
             border-radius: 12px;
-            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 105, 180, 0.3);
         }
@@ -983,8 +982,9 @@
                                 <button class="add-to-cart" onclick="addToCart('My Way', 'Female', 200)">Add to Cart</button>
                             </div>
                         </div>
-                        </div>
-                        
+                    </div>
+                </div>
+
                 <!-- Male Fragrances -->
                 <div class="category-section">
                     <h3 class="category-title">🕺 Male Fragrances</h3>
@@ -992,12 +992,12 @@
                         <div class="product-card">
                             <div class="product-image">
                                 <div class="perfume-bottle-small" style="background-image: url('creed.jpg');">
-                                    <div class="product-brand">Adventure<br>Creed</div>
+                                    <div class="product-brand">Creed</div>
                                 </div>
                             </div>
                             <div class="product-info">
                                 <div class="product-category">Male</div>
-                                <div class="product-name">Adventure Creed</div>
+                                <div class="product-name">Creed</div>
                                 <div class="product-price">R200</div>
                                 <div class="product-stock stock-low">⚡ In Stock: 2</div>
                                 <button class="add-to-cart" onclick="addToCart('Adventure Creed', 'Male', 200)">Add to Cart</button>
@@ -1048,23 +1048,6 @@
                                 <button class="add-to-cart" onclick="addToCart('Sauvage', 'Male', 200)">Add to Cart</button>
                             </div>
                         </div>
-
-                        <div class="product-card">
-                            <div class="product-image">
-                                <div class="perfume-bottle-small" style="background-image: url('creed.jpg');">
-                                    <div class="product-brand">Le <br> Male</div>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-category">Male</div>
-                                <div class="product-name">Le Male</div>
-                                <div class="product-price">R200</div>
-                                <div class="product-stock stock-available">✨ In Stock: 3</div>
-                                <button class="add-to-cart" onclick="addToCart('Invictus', 'Male', 200)">Add to Cart</button>
-                            </div>
-                        </div>
-
-                        </div>
                     </div>
                 </div>
 
@@ -1105,7 +1088,7 @@
                         <div class="product-card">
                             <div class="product-image">
                                 <div class="perfume-bottle-small" style="background-image: url('burybery.jpg');">
-                                    <div class="product-brand">Afternoon<br>Swimm</div>
+                                    <div class="product-brand">Afternoon<br>Swim</div>
                                 </div>
                             </div>
                             <div class="product-info">
@@ -1116,6 +1099,11 @@
                                 <button class="add-to-cart" onclick="addToCart('Creed Aventus', 'Niche', 200)">Add to Cart</button>
                             </div>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Cart Page -->
         <div id="cart" class="page">
